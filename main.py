@@ -26,7 +26,7 @@ def get_recipe_data(url):
             if name_tag and amount_tag:
                 name = name_tag.text.strip()
                 amount = amount_tag.text.strip()
-                unit = unit_tag.text.strip() if unit_tag else ""
+                unit = unit_tag.text.strip() if unit_tag else "no unit"
 
                 ingredient_data = {'name': name, 'amount': amount, 'unit': unit}
                 group_data['ingredients'].append(ingredient_data)
@@ -53,6 +53,7 @@ def update_shopping_list(recipe_list):
             for ingredient in group['ingredients']:
                 name = ingredient['name']
                 quantity_str = ingredient['amount']
+                unit = ingredient['unit']
 
                 # Skip iteration if quantity is an empty string
                 if not quantity_str:
